@@ -3,12 +3,14 @@ class ModelCardUIKit{
   String imagePath;
   String description;
   bool viewSelected;
+  String navPath;
 
   ModelCardUIKit({
     required this.name,
     required this.imagePath,
     required this.description,
     required this.viewSelected,
+    required this.navPath,
 });
 
   static List<ModelCardUIKit> getUICard(){
@@ -19,28 +21,36 @@ class ModelCardUIKit{
           name: 'Мелиорация',
           imagePath: 'assets/img/screen_melio.jpg',
           description: 'UI-kit проекта мобильной версии мелиорации',
-          viewSelected: false),
+          viewSelected: false,
+          navPath: '',
+      ),
     );
     cards.add(
       ModelCardUIKit(
           name: 'ЭПК',
           imagePath: 'assets/img/screen.png',
           description: 'UI-kit проекта мобильной версии ЭПК',
-          viewSelected: false),
+          viewSelected: false,
+          navPath: '',
+      ),
     );
     cards.add(
       ModelCardUIKit(
           name: 'Семеноводство',
           imagePath: 'assets/img/screen.png',
           description: 'UI-kit проекта мобильной версии семеноводства',
-          viewSelected: false),
+          viewSelected: false,
+          navPath: '',
+      ),
     );
     cards.add(
       ModelCardUIKit(
           name: '30М',
           imagePath: 'assets/img/screen.png',
           description: 'UI-kit проекта мобильной версии 30М',
-          viewSelected: false),
+          viewSelected: false,
+          navPath: '/hack_your_w'
+      ),
     );
 
     return cards;

@@ -25,10 +25,10 @@ class ModelCardWidget{
     );
     wigets.add(
       ModelCardWidget(
-          name: 'Widget',
+          name: 'TapBar',
           icon: Icon(Icons.settings),
           boxColor: Colors.deepOrange,
-          navPath: '/'
+          navPath: '/les_tab_bar'
       ),
     );
     wigets.add(

@@ -243,58 +243,63 @@ Padding kitsList(List<ModelCardUIKit> kits){
         itemCount: kits.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return Container(
-            width: 350,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.grey.shade300,
-                      spreadRadius: 0.0,
-                      blurRadius: 3.5,
-                      offset: Offset(5.0, 5.0)),
-                  BoxShadow(
-                      color: Colors.grey.shade400,
-                      spreadRadius: 0.0,
-                      blurRadius: 3.5 / 2.0,
-                      offset: Offset(5.0, 5.0)),
-                  BoxShadow(
-                      color: Colors.white,
-                      spreadRadius: 2.0,
-                      blurRadius: 3.5,
-                      offset: Offset(-5.0, -5.0)),
-                  BoxShadow(
-                      color: Colors.white,
-                      spreadRadius: 2.0,
-                      blurRadius: 3.5 / 2,
-                      offset: Offset(-5.0, -5.0)),
-                ]),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  width: 350,
-                  height: 350,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30),
-                    ),
-                    child: Image.asset(
-                      kits[index].imagePath,
-                      fit: BoxFit.cover,
+          return GestureDetector(
+            onTap: (){
+              Navigator.of(context).pushNamed(kits[index].navPath);
+            },
+            child: Container(
+              width: 350,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey.shade300,
+                        spreadRadius: 0.0,
+                        blurRadius: 3.5,
+                        offset: Offset(5.0, 5.0)),
+                    BoxShadow(
+                        color: Colors.grey.shade400,
+                        spreadRadius: 0.0,
+                        blurRadius: 3.5 / 2.0,
+                        offset: Offset(5.0, 5.0)),
+                    BoxShadow(
+                        color: Colors.white,
+                        spreadRadius: 2.0,
+                        blurRadius: 3.5,
+                        offset: Offset(-5.0, -5.0)),
+                    BoxShadow(
+                        color: Colors.white,
+                        spreadRadius: 2.0,
+                        blurRadius: 3.5 / 2,
+                        offset: Offset(-5.0, -5.0)),
+                  ]),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 350,
+                    height: 350,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30),
+                      ),
+                      child: Image.asset(
+                        kits[index].imagePath,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                    height: 50,
-                    width: 350,
-                    alignment: Alignment.center,
-                    child: Text(
-                      kits[index].name,
-                      style: TextStyle(fontSize: 20),
-                    )),
-              ],
+                  Container(
+                      height: 50,
+                      width: 350,
+                      alignment: Alignment.center,
+                      child: Text(
+                        kits[index].name,
+                        style: TextStyle(fontSize: 20),
+                      )),
+                ],
+              ),
             ),
           );
         },
