@@ -8,16 +8,21 @@ class _LesTabBarScreen extends State<LesTapBarScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
+      //инициализируем контроллер табов для нашего экрана
       length: 3,
+      //указываем количество Tabs
       child: Scaffold(
         appBar: AppBar(
           title: Center(child: Text('TAB BAR')),
         ),
         body: Column(
+          //создаём структуру Column чтобы вставить плашку с табами и главную часть отображаемого интерфейса
           children: [
             TabBar(
+              //виджет который отображает сами Tabs о количеству полученному из length
               tabs: [
                 Tab(
+                  //один таб в панели навигации
                   icon: Icon(Icons.menu_book_outlined),
                 ),
                 Tab(
@@ -30,6 +35,7 @@ class _LesTabBarScreen extends State<LesTapBarScreen> {
             ),
             Expanded(
               child: TabBarView(children: [
+                //тут будет размещаться наш интерфейс в зависимости от выбранного таба
                 //Tab 1
                 getTab1(),
                 //Tab 2
