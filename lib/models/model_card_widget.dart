@@ -33,10 +33,10 @@ class ModelCardWidget{
     );
     wigets.add(
       ModelCardWidget(
-          name: 'Widget',
+          name: 'Drawer',
           icon: Icon(Icons.settings),
           boxColor: Colors.green,
-          navPath: '/',
+          navPath: '/les_drawer',
       ),
     );
     wigets.add(

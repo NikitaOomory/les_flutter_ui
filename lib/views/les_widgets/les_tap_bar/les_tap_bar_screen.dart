@@ -13,7 +13,8 @@ class _LesTabBarScreen extends State<LesTapBarScreen> {
       //указываем количество Tabs
       child: Scaffold(
         appBar: AppBar(
-          title: Center(child: Text('TAB BAR')),
+          centerTitle: true,
+          title: Text('TAB BAR'),
         ),
         body: Column(
           //создаём структуру Column чтобы вставить плашку с табами и главную часть отображаемого интерфейса
