@@ -41,10 +41,10 @@ class ModelCardWidget{
     );
     wigets.add(
       ModelCardWidget(
-          name: 'Widget',
+          name: 'TextField',
           icon: Icon(Icons.settings),
           boxColor: Colors.deepPurple,
-          navPath: '/',
+          navPath: '/les_text_field',
       ),
     );
     wigets.add(
