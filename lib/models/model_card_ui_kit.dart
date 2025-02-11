@@ -36,15 +36,6 @@ class ModelCardUIKit{
     );
     cards.add(
       ModelCardUIKit(
-          name: 'Семеноводство',
-          imagePath: 'assets/img/screen.png',
-          description: 'UI-kit проекта мобильной версии семеноводства',
-          viewSelected: false,
-          navPath: '',
-      ),
-    );
-    cards.add(
-      ModelCardUIKit(
           name: '30М',
           imagePath: 'assets/img/screen.png',
           description: 'UI-kit проекта мобильной версии 30М',
@@ -52,6 +43,16 @@ class ModelCardUIKit{
           navPath: '/hack_your_w'
       ),
     );
+    cards.add(
+      ModelCardUIKit(
+          name: 'Семеноводство',
+          imagePath: 'assets/img/screen.png',
+          description: 'UI-kit проекта мобильной версии семеноводства',
+          viewSelected: false,
+          navPath: '',
+      ),
+    );
+
 
     return cards;
   }
