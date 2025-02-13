@@ -14,8 +14,8 @@ class ModelCardWidget{
   });
 
   static List<ModelCardWidget> getWidgets(){
-    List<ModelCardWidget> wigets = [];
-    wigets.add(
+    List<ModelCardWidget> widgets = [];
+    widgets.add(
       ModelCardWidget(
           name: 'Container',
           icon: Icon(Icons.settings),
@@ -23,7 +23,7 @@ class ModelCardWidget{
           navPath: '/les_container_screen'
       ),
     );
-    wigets.add(
+    widgets.add(
       ModelCardWidget(
           name: 'TapBar',
           icon: Icon(Icons.settings),
@@ -31,7 +31,7 @@ class ModelCardWidget{
           navPath: '/les_tab_bar'
       ),
     );
-    wigets.add(
+    widgets.add(
       ModelCardWidget(
           name: 'Drawer',
           icon: Icon(Icons.settings),
@@ -39,7 +39,7 @@ class ModelCardWidget{
           navPath: '/les_drawer',
       ),
     );
-    wigets.add(
+    widgets.add(
       ModelCardWidget(
           name: 'TextField',
           icon: Icon(Icons.settings),
@@ -47,7 +47,7 @@ class ModelCardWidget{
           navPath: '/les_text_field',
       ),
     );
-    wigets.add(
+    widgets.add(
       ModelCardWidget(
           name: 'Widget',
           icon: Icon(Icons.settings),
@@ -55,7 +55,7 @@ class ModelCardWidget{
           navPath: '/',
       ),
     );
-    wigets.add(
+    widgets.add(
       ModelCardWidget(
           name: 'Widget',
           icon: Icon(Icons.settings),
@@ -63,7 +63,7 @@ class ModelCardWidget{
           navPath: '/',
       ),
     );
-    wigets.add(
+    widgets.add(
       ModelCardWidget(
           name: 'Widget',
           icon: Icon(Icons.settings),
@@ -71,7 +71,7 @@ class ModelCardWidget{
           navPath: '/',
       ),
     );
-    wigets.add(
+    widgets.add(
       ModelCardWidget(
           name: 'Widget',
           icon: Icon(Icons.settings),
@@ -79,7 +79,7 @@ class ModelCardWidget{
           navPath: '/',
       ),
     );
-    wigets.add(
+    widgets.add(
       ModelCardWidget(
           name: 'Widget',
           icon: Icon(Icons.settings),
@@ -88,6 +88,6 @@ class ModelCardWidget{
       ),
     );
 
-    return wigets;
+    return widgets;
   }
 }

@@ -18,18 +18,34 @@ void main() {
 
     // Verify that our counter starts at 0.
     expect(find.text('Container'), findsOneWidget);
-    testContainerScreen();
-    expect(find.text('Widget'), findsWidgets);
-    expect(find.text('Мелиорация'), findsOneWidget);
-    expect(find.text('ЭПК'), findsOneWidget);
-    expect(find.text('30М'), findsOneWidget);
+    final containerWidget = find.text('Container');
+    await tester.tap(containerWidget);
+    await tester.pumpAndSettle();
+
+    await tester.pump();
+    expect(find.text('CONTAINER'), findsWidgets);
+    expect(find.text('КОНТЕЙНЕР'), findsOne);
+    //testContainerScreen();
+    // expect(find.text('Widget'), findsWidgets);
+    // expect(find.text('Мелиорация'), findsOneWidget);
+    // expect(find.text('ЭПК'), findsOneWidget);
+    // expect(find.text('30М'), findsOneWidget);
     //expect(find.text('Семеноводство'), findsOneWidget);
   });
 }
 
-void testContainerScreen() {
+// void testContainerScreen() {
+//   testWidgets('Find widget Container', (WidgetTester tester) async {
+//     // Build our app and trigger a frame.
+//     // Verify that our counter starts at 0.
+//     final containerWidget = find.text('Container');
+//     await tester.tap(containerWidget);
+//
+//     await tester.pump();
+//     expect(find.text('CONTAINER'), findsOneWidget);
+//   });
 
-}
+//}
 //     await tester.pumpWidget(const MyApp());
 //
 //     // Verify that our counter starts at 0.
