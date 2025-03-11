@@ -3,14 +3,16 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 class LesTextFieldScreen extends StatefulWidget {
+  const LesTextFieldScreen({super.key});
+
   @override
   State<LesTextFieldScreen> createState() => _LesTextFieldScreenState();
 }
 
 class _LesTextFieldScreenState extends State<LesTextFieldScreen> {
-
   final TextEditingController _myTextFieldController = TextEditingController();
-  final TextEditingController _myBigTextFieldController = TextEditingController();
+  final TextEditingController _myBigTextFieldController =
+      TextEditingController();
   DateTimeRange? _selectedDateRange; // Диапазон выбранных дат
   final String _textForDisableTextField = 'Васильев Никита Сергеевич';
 
@@ -18,6 +20,7 @@ class _LesTextFieldScreenState extends State<LesTextFieldScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        key: ValueKey('TextFieldHeader'),
         title: Text('TextField'),
         centerTitle: true,
       ),
@@ -83,15 +86,23 @@ class _LesTextFieldScreenState extends State<LesTextFieldScreen> {
       cursorColor: Colors.green,
       controller: controller, //контроллер для этого TextField
       decoration: InputDecoration(
-        icon: Icon(Icons.account_balance_wallet_rounded, color: Colors.green, size: 40,),
+        icon: Icon(
+          Icons.account_balance_wallet_rounded,
+          color: Colors.green,
+          size: 40,
+        ),
         labelText: 'Сколько денег у Вас на счету?',
         labelStyle: TextStyle(color: Colors.grey.shade300),
         floatingLabelStyle: TextStyle(color: Colors.green),
         hintText: '10000',
         hintStyle: TextStyle(color: Colors.grey.shade300),
         maintainHintHeight: true, //hint в значении false будет по центру
-        floatingLabelBehavior: FloatingLabelBehavior.auto, //можно включить или отключить анимацию перемещения label
-        prefixIcon: Icon(Icons.monetization_on_outlined, color: Colors.green,),
+        floatingLabelBehavior: FloatingLabelBehavior
+            .auto, //можно включить или отключить анимацию перемещения label
+        prefixIcon: Icon(
+          Icons.monetization_on_outlined,
+          color: Colors.green,
+        ),
         suffixText: 'руб.',
         suffixStyle: TextStyle(color: Colors.green),
         focusedBorder: OutlineInputBorder(
@@ -99,8 +110,8 @@ class _LesTextFieldScreenState extends State<LesTextFieldScreen> {
           borderRadius: BorderRadius.all(Radius.circular(0)),
         ),
         enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.green, width: 2),
-            borderRadius: BorderRadius.all(Radius.circular(30)),
+          borderSide: BorderSide(color: Colors.green, width: 2),
+          borderRadius: BorderRadius.all(Radius.circular(30)),
         ),
       ),
       keyboardType: TextInputType.number, //тип клавиатуры вызываемый для поля
@@ -110,20 +121,25 @@ class _LesTextFieldScreenState extends State<LesTextFieldScreen> {
     );
   }
 
-  TextField myBigTextField(TextEditingController controller){
-    return  TextField(
+  TextField myBigTextField(TextEditingController controller) {
+    return TextField(
       maxLines: 5,
       cursorColor: Colors.green,
       controller: controller, //контроллер для этого TextField
       decoration: InputDecoration(
-        icon: Icon(Icons.contact_page_rounded, color: Colors.green, size: 40,),
+        icon: Icon(
+          Icons.contact_page_rounded,
+          color: Colors.green,
+          size: 40,
+        ),
         labelText: 'Опишите свою жизнь в пяти предложениях',
         labelStyle: TextStyle(color: Colors.grey.shade300),
         floatingLabelStyle: TextStyle(color: Colors.green),
         hintText: 'Я живу так...',
         hintStyle: TextStyle(color: Colors.grey.shade300),
         maintainHintHeight: true, //hint в значении false будет по центру
-        floatingLabelBehavior: FloatingLabelBehavior.auto, //можно включить или отключить анимацию перемещения label
+        floatingLabelBehavior: FloatingLabelBehavior
+            .auto, //можно включить или отключить анимацию перемещения label
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.green, width: 2),
           borderRadius: BorderRadius.all(Radius.circular(0)),
@@ -136,18 +152,23 @@ class _LesTextFieldScreenState extends State<LesTextFieldScreen> {
     );
   }
 
-  TextField myDisableTextField(String text){
+  TextField myDisableTextField(String text) {
     return TextField(
       controller: TextEditingController(text: text),
       readOnly: true,
       cursorColor: Colors.green,
       decoration: InputDecoration(
-        icon: Icon(Icons.man, color: Colors.green, size: 40,),
+        icon: Icon(
+          Icons.man,
+          color: Colors.green,
+          size: 40,
+        ),
         labelText: 'Автор',
         labelStyle: TextStyle(color: Colors.grey.shade300),
         floatingLabelStyle: TextStyle(color: Colors.green),
         maintainHintHeight: true, //hint в значении false будет по центру
-        floatingLabelBehavior: FloatingLabelBehavior.auto, //можно включить или отключить анимацию перемещения label
+        floatingLabelBehavior: FloatingLabelBehavior
+            .auto, //можно включить или отключить анимацию перемещения label
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.green, width: 2),
           borderRadius: BorderRadius.all(Radius.circular(0)),
@@ -160,14 +181,18 @@ class _LesTextFieldScreenState extends State<LesTextFieldScreen> {
     );
   }
 
-  TextField mySearchTextField(String query){
+  TextField mySearchTextField(String query) {
     return TextField(
       decoration: InputDecoration(
         hintText: 'Поиск...',
         hintStyle: TextStyle(color: Colors.grey.shade300),
         maintainHintHeight: true, //hint в значении false будет по центру
-        floatingLabelBehavior: FloatingLabelBehavior.auto, //можно включить или отключить анимацию перемещения label
-        prefixIcon: Icon(Icons.search, color: Colors.green,),
+        floatingLabelBehavior: FloatingLabelBehavior
+            .auto, //можно включить или отключить анимацию перемещения label
+        prefixIcon: Icon(
+          Icons.search,
+          color: Colors.green,
+        ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.green, width: 2),
           borderRadius: BorderRadius.all(Radius.circular(0)),
@@ -191,5 +216,4 @@ class _LesTextFieldScreenState extends State<LesTextFieldScreen> {
       lastDate: DateTime(2101),
     );
   }
-
 }

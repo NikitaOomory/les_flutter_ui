@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class LesTapBarScreen extends StatefulWidget {
+  const LesTapBarScreen({super.key});
+
+  @override
   State<StatefulWidget> createState() => _LesTabBarScreen();
 }
 
@@ -13,9 +16,9 @@ class _LesTabBarScreen extends State<LesTapBarScreen> {
       //указываем количество Tabs
       child: Scaffold(
         appBar: AppBar(
-          centerTitle: true,
-          title: Text('TAB BAR'),
-        ),
+            centerTitle: true,
+            title: Text('TAB BAR'),
+            key: ValueKey('tabBarScreen')),
         body: Column(
           //создаём структуру Column чтобы вставить плашку с табами и главную часть отображаемого интерфейса
           children: [
@@ -23,15 +26,11 @@ class _LesTabBarScreen extends State<LesTapBarScreen> {
               //виджет который отображает сами Tabs о количеству полученному из length
               tabs: [
                 Tab(
-                  //один таб в панели навигации
-                  icon: Icon(Icons.menu_book_outlined),
-                ),
-                Tab(
-                  icon: Icon(Icons.people_alt),
-                ),
-                Tab(
-                  icon: Icon(Icons.home_rounded),
-                ),
+                    //один таб в панели навигации
+                    icon: Icon(Icons.menu_book_outlined),
+                    key: ValueKey('bookIcon')),
+                Tab(icon: Icon(Icons.people_alt), key: ValueKey('peopleIcon')),
+                Tab(icon: Icon(Icons.home_rounded), key: ValueKey('homeIcon')),
               ],
             ),
             Expanded(
@@ -53,22 +52,40 @@ class _LesTabBarScreen extends State<LesTapBarScreen> {
 
   Container getTab1() {
     return Container(
-      color: Colors.red,
-      child: Center(child: Text('Tab 1', style: TextStyle(fontSize: 30, color: Colors.white, fontWeight: FontWeight.w800),),),
-    );
+        color: Colors.red,
+        key: ValueKey('Tab_1'),
+        child: Center(
+          child: Text(
+            'Tab 1',
+            style: TextStyle(
+                fontSize: 30, color: Colors.white, fontWeight: FontWeight.w800),
+          ),
+        ));
   }
 
   Container getTab2() {
     return Container(
         color: Colors.green,
-        child: Center(child: Text('Tab 2', style: TextStyle(fontSize: 30, color: Colors.white, fontWeight: FontWeight.w800),),)
-    );
+        key: ValueKey('Tab_2'),
+        child: Center(
+          child: Text(
+            'Tab 2',
+            style: TextStyle(
+                fontSize: 30, color: Colors.white, fontWeight: FontWeight.w800),
+          ),
+        ));
   }
 
   Container getTab3() {
     return Container(
-      color: Colors.blue,
-      child: Center(child: Text('Tab 3', style: TextStyle(fontSize: 30, color: Colors.white, fontWeight: FontWeight.w800),),)
-    );
+        color: Colors.blue,
+        key: ValueKey('Tab_3'),
+        child: Center(
+          child: Text(
+            'Tab 3',
+            style: TextStyle(
+                fontSize: 30, color: Colors.white, fontWeight: FontWeight.w800),
+          ),
+        ));
   }
 }

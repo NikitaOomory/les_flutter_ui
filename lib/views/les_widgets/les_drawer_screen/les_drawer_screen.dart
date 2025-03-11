@@ -18,6 +18,7 @@ class _LesDrawerScreen extends State<LesDrawerScreen> {
       appBar: AppBar(
         // Создаем AppBar в верхней части экрана.
         title: Text('DRAWER'), // Заголовок на AppBar.
+        key: ValueKey('DRAWER'),
         centerTitle: true, // Центрируем заголовок.
       ),
       endDrawer: Drawer(
@@ -67,6 +68,7 @@ class ScreenOne extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: ValueKey('ScreenOne'),
       // Структура экрана.
       backgroundColor: Colors.greenAccent, // Устанавливаем цвет фона.
       body: Center(

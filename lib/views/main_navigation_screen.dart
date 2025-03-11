@@ -4,9 +4,10 @@ import 'package:les_flutter_ui/models/model_card_ui_kit.dart';
 import '../models/model_card_widget.dart';
 
 class MainNavigationScreen extends StatelessWidget {
-
   List<ModelCardWidget> widgets = [];
   List<ModelCardUIKit> kits = [];
+
+  MainNavigationScreen({super.key});
 
   void _getModelWidgets() {
     widgets = ModelCardWidget.getWidgets();
@@ -26,9 +27,13 @@ class MainNavigationScreen extends StatelessWidget {
       body: ListView(
         children: [
           searchWidget(),
-          SizedBox(height: 15,),
+          SizedBox(
+            height: 15,
+          ),
           widgetsList(widgets),
-          SizedBox(height: 15,),
+          SizedBox(
+            height: 15,
+          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -42,7 +47,9 @@ class MainNavigationScreen extends StatelessWidget {
                       fontSize: 25),
                 ),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               kitsList(kits),
             ],
           ),
@@ -118,7 +125,7 @@ Container searchWidget() {
             fontSize: 15,
             fontWeight: FontWeight.normal,
           ),
-          suffixIcon: Container(
+          suffixIcon: SizedBox(
             width: 100,
             child: IntrinsicHeight(
               child: Row(
@@ -161,7 +168,7 @@ Column widgetsList(List<ModelCardWidget> widgets) {
       SizedBox(
         height: 20,
       ),
-      Container(
+      SizedBox(
         height: 150,
         child: ListView.separated(
             itemCount: widgets.length,
@@ -177,7 +184,7 @@ Column widgetsList(List<ModelCardWidget> widgets) {
                 ),
             itemBuilder: (context, index) {
               return GestureDetector(
-                onTap: (){
+                onTap: () {
                   Navigator.of(context).pushNamed(widgets[index].navPath);
                 },
                 child: Container(
@@ -216,8 +223,8 @@ Column widgetsList(List<ModelCardWidget> widgets) {
                       ),
                       Text(
                         widgets[index].name,
-                        style:
-                            TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.bold),
                       )
                     ],
                   ),
@@ -229,14 +236,13 @@ Column widgetsList(List<ModelCardWidget> widgets) {
   );
 }
 
-Padding kitsList(List<ModelCardUIKit> kits){
+Padding kitsList(List<ModelCardUIKit> kits) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 20),
-    child: Container(
+    child: SizedBox(
       height: 440,
       child: ListView.separated(
-        padding: EdgeInsets.only(
-            left: 20, top: 20, right: 20, bottom: 20),
+        padding: EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 20),
         separatorBuilder: (context, index) => SizedBox(
           width: 25,
         ),
@@ -244,7 +250,7 @@ Padding kitsList(List<ModelCardUIKit> kits){
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return GestureDetector(
-            onTap: (){
+            onTap: () {
               Navigator.of(context).pushNamed(kits[index].navPath);
             },
             child: Container(
@@ -276,7 +282,7 @@ Padding kitsList(List<ModelCardUIKit> kits){
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Container(
+                  SizedBox(
                     width: 350,
                     height: 350,
                     child: ClipRRect(

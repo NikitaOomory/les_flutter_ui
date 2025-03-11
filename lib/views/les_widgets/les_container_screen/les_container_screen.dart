@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
 class LesContainerScreen extends StatelessWidget {
+  const LesContainerScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('CONTAINER'),
+        key: ValueKey('scaffoldContainerScreen'),
       ),
       body: Center(
           child: Container(
