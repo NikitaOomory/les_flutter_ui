@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:les_flutter_ui/main.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:les_flutter_ui/views/les_widgets/les_drawer_screen/les_drawer_screen.dart';
+import 'package:les_flutter_ui/views/les_widgets/les_text_field_screen/les_text_field_screen.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
@@ -250,16 +253,275 @@ Future<void> _testSwipe(WidgetTester tester) async {
   await tester.pumpAndSettle(Duration(seconds: 2));
 }
 
+// Text Fields tests
 Future<void> _testTextField(WidgetTester tester) async {
   expect(find.text('TextField'), findsOneWidget);
   await tester.tap(find.text('TextField'));
   await tester.pumpAndSettle();
-  expect(find.byKey(ValueKey('TextFieldHeader')), findsOneWidget);
+  expect(find.byKey(Key('TextFieldHeader')), findsOneWidget);
   expect(find.byType(BackButton), findsOneWidget);
+
+  await _testMyTextField(tester);
+  await _testMyBigTextField(tester);
+  await _testMyDisableTextField(tester);
+  await _testMySearchTextField(tester);
+  await _testDatePicker(tester);
+
+  await tester.tap(find.byType(BackButton));
+  await tester.pumpAndSettle();
+  expect(find.text('Flutter widgets'), findsOneWidget);
+}
+
+Future<void> _testMyTextField(WidgetTester tester) async {
   expect(find.text('Сколько денег у Вас на счету?'), findsOneWidget);
+  expect(find.text('руб.'), findsOneWidget);
+  expect(find.text('10000'), findsOneWidget);
+  expect(find.byKey(Key('accountBalanceWalletRoundedIcon')), findsOneWidget);
+  expect(find.byKey(Key('monetizationOnOutlinedIcon')), findsOneWidget);
+  final myTextField = find.byKey(Key(
+      'myTextField')); // нужен ли здесь const перед Key final textField = find.byKey(const Key('myTextField'));
+
+  await _testFocusMyTestField(tester);
+
+  // Вводим текст с валидным значением
+  await tester.enterText(myTextField, '35');
+
+  // Проверяем результат
+  expect(find.text('35'), findsOneWidget);
+  await tester.enterText(find.byKey(Key('myTextField')), ''); // Пустая строка
+
+  // Проверяем очистку
+  expect(find.text('35'), findsNothing);
+
+  // Вводим текст с невалидным значением
+  await tester.enterText(myTextField, 'test');
+  expect(find.text('test'), findsNothing);
+}
+
+Future<void> _testFocusMyTestField(WidgetTester tester) async {
+  // final controller = TextEditingController();
+
+  // // Создаем тестовый виджет
+  // await tester.pumpWidget(
+  //   MaterialApp(
+  //     home: Scaffold(
+  //       body: myTextField(controller),
+  //     ),
+  //   ),
+  // );
+
+  // Находим TextField по ключу
+  final textFieldFinder = find.byKey(const ValueKey('myTextField'));
+  final TextField myTextField = tester.widget(textFieldFinder);
+
+  // Проверяем начальное состояние (до фокусировки)
+  final InputDecoration initialDecoration = myTextField.decoration!;
+
+  // Проверка рамки
+  expect(
+    (initialDecoration.enabledBorder! as OutlineInputBorder).borderRadius,
+    const BorderRadius.all(Radius.circular(30)),
+  );
+
+  // Проверка цвета текста label
+  expect(
+    initialDecoration.labelStyle!.color,
+    equals(Colors.grey.shade300),
+  );
+
+  // Тапаем для фокусировки
+  await tester.tap(textFieldFinder);
+  await tester.pumpAndSettle(); // Ожидаем анимации
+
+  // Получаем обновленный виджет после фокусировки
+  final TextField focusedTextField = tester.widget(textFieldFinder);
+  final InputDecoration focusedDecoration = focusedTextField.decoration!;
+
+  // Проверка измененной рамки
+  expect(
+    (focusedDecoration.focusedBorder! as OutlineInputBorder).borderRadius,
+    const BorderRadius.all(Radius.circular(0)),
+  );
+
+  // Проверка цвета floating label
+  expect(
+    focusedDecoration.floatingLabelStyle!.color,
+    equals(Colors.green),
+  );
+}
+
+Future<void> _testMyBigTextField(WidgetTester tester) async {
+  final myBigTextField = find.byKey(Key('myBigTextField'));
   expect(find.text('Опишите свою жизнь в пяти предложениях'), findsOneWidget);
+  expect(find.byKey(Key('contactPageRoundedIcon')), findsOneWidget);
+  expect(find.text('Я живу так...'), findsOneWidget);
+
+  await _testFocusMyBigTestField(tester);
+
+  await tester.enterText(
+      myBigTextField, 'Тестирование ввода текста 123!@#%^&*()-_+=~`;:');
+  expect(find.text('Тестирование ввода текста 123!@#%^&*()-_+=~`;:'),
+      findsOneWidget);
+  await tester.enterText(myBigTextField, '');
+  expect(find.text('Тестирование ввода текста 123!@#%^&*()-_+=~`;:'),
+      findsNothing);
+}
+
+Future<void> _testFocusMyBigTestField(WidgetTester tester) async {
+  // Находим TextField по ключу
+  final textFieldFinder = find.byKey(const ValueKey('myBigTextField'));
+  final TextField myBigTextField = tester.widget(textFieldFinder);
+
+  // Проверяем начальное состояние (до фокусировки)
+  final InputDecoration initialDecoration = myBigTextField.decoration!;
+
+  // Проверка рамки
+  expect(
+    (initialDecoration.enabledBorder! as OutlineInputBorder).borderRadius,
+    const BorderRadius.all(Radius.circular(30)),
+  );
+
+  // Проверка цвета текста label
+  expect(
+    initialDecoration.labelStyle!.color,
+    equals(Colors.grey.shade300),
+  );
+
+  // Тапаем для фокусировки
+  await tester.tap(textFieldFinder);
+  await tester.pumpAndSettle(); // Ожидаем анимации
+
+  // Получаем обновленный виджет после фокусировки
+  final TextField focusedTextField = tester.widget(textFieldFinder);
+  final InputDecoration focusedDecoration = focusedTextField.decoration!;
+
+  // Проверка измененной рамки
+  expect(
+    (focusedDecoration.focusedBorder! as OutlineInputBorder).borderRadius,
+    const BorderRadius.all(Radius.circular(0)),
+  );
+
+  // Проверка цвета floating label
+  expect(
+    focusedDecoration.floatingLabelStyle!.color,
+    equals(Colors.green),
+  );
+}
+
+Future<void> _testMyDisableTextField(WidgetTester tester) async {
   expect(find.text('Автор'), findsOneWidget);
   expect(find.text('Васильев Никита Сергеевич'), findsOneWidget);
+  expect(find.byKey(Key('man')), findsOneWidget);
+
+  await _testFocusMyDisableTextField(tester);
+
+  final myDisabledTextField = find.byKey(Key('myDisableTextField'));
+  await tester.enterText(myDisabledTextField, 'Testing text');
+  expect(find.text('Testing text'), findsNothing);
+}
+
+Future<void> _testFocusMyDisableTextField(WidgetTester tester) async {
+  // Находим TextField по ключу
+  final textFieldFinder = find.byKey(const ValueKey('myDisableTextField'));
+  final TextField myDisabledTextField = tester.widget(textFieldFinder);
+
+  // Проверяем начальное состояние (до фокусировки)
+  final InputDecoration initialDecoration = myDisabledTextField.decoration!;
+
+  // Проверка рамки
+  expect(
+    (initialDecoration.enabledBorder! as OutlineInputBorder).borderRadius,
+    const BorderRadius.all(Radius.circular(30)),
+  );
+
+  // Проверка цвета текста label
+  expect(
+    initialDecoration.labelStyle!.color,
+    equals(Colors.grey.shade300),
+  );
+
+  // // Проверка цвета текста label
+  // expect(
+  //   initialDecoration.floatingLabelStyle!.color,
+  //   equals(Colors.green),
+  // );
+
+  // Тапаем для фокусировки
+  await tester.tap(textFieldFinder);
+  await tester.pumpAndSettle(); // Ожидаем анимации
+
+  // Получаем обновленный виджет после фокусировки
+  final TextField focusedTextField = tester.widget(textFieldFinder);
+  final InputDecoration focusedDecoration = focusedTextField.decoration!;
+
+  // Проверка измененной рамки
+  expect(
+    (focusedDecoration.focusedBorder! as OutlineInputBorder).borderRadius,
+    const BorderRadius.all(Radius.circular(0)),
+  );
+
+  // Проверка цвета floating label
+  expect(
+    focusedDecoration.floatingLabelStyle!.color,
+    equals(Colors.green),
+  );
+}
+
+Future<void> _testMySearchTextField(WidgetTester tester) async {
+  final mySearchTextField = find.byKey(Key('mySearchTextField'));
   expect(find.text('Поиск...'), findsOneWidget);
+  expect(find.byKey(Key('search')), findsOneWidget);
+
+  await tester.enterText(
+      mySearchTextField, 'Тестирование ввода текста 123!@#%^&*()-_+=~`;:');
+  expect(find.text('Тестирование ввода текста 123!@#%^&*()-_+=~`;:'),
+      findsOneWidget);
+  await tester.enterText(mySearchTextField, '');
+  expect(find.text('Тестирование ввода текста 123!@#%^&*()-_+=~`;:'),
+      findsNothing);
+
+  await _testFocusMySearchTextField(tester);
+}
+
+Future<void> _testFocusMySearchTextField(WidgetTester tester) async {
+  // Находим TextField по ключу
+  final textFieldFinder = find.byKey(const ValueKey('mySearchTextField'));
+  final TextField mySearchTextField = tester.widget(textFieldFinder);
+
+  // Проверяем начальное состояние (до фокусировки)
+  final InputDecoration initialDecoration = mySearchTextField.decoration!;
+
+  // Проверка рамки
+  expect(
+    (initialDecoration.enabledBorder! as OutlineInputBorder).borderRadius,
+    const BorderRadius.all(Radius.circular(30)),
+  );
+
+  // Тапаем для фокусировки
+  await tester.tap(textFieldFinder);
+  await tester.pumpAndSettle(); // Ожидаем анимации
+
+  // Получаем обновленный виджет после фокусировки
+  final TextField focusedTextField = tester.widget(textFieldFinder);
+  final InputDecoration focusedDecoration = focusedTextField.decoration!;
+
+  // Проверка измененной рамки
+  expect(
+    (focusedDecoration.focusedBorder! as OutlineInputBorder).borderRadius,
+    const BorderRadius.all(Radius.circular(0)),
+  );
+}
+
+Future<void> _testDatePicker(WidgetTester tester) async {
   expect(find.text('Выберите диапазон дат'), findsOneWidget);
+  expect(find.text('Start Date'), findsNothing);
+  expect(find.byKey(Key('calendarIcon')), findsOneWidget);
+  final datePickerTextField = find.byKey(Key('DatePicker'));
+  await tester.tap(datePickerTextField);
+  await tester.pumpAndSettle();
+  expect(find.text('Start Date'), findsOneWidget);
+  expect(find.byIcon(Icons.close), findsOneWidget);
+  await tester.tap(find.byIcon(Icons.close));
+  await tester.pumpAndSettle();
+  expect(find.text('Start Date'), findsNothing);
 }

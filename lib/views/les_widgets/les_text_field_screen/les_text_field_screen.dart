@@ -49,6 +49,7 @@ class _LesTextFieldScreenState extends State<LesTextFieldScreen> {
             ),
             //дата пикер
             Padding(
+              key: ValueKey('DatePicker'),
               padding: const EdgeInsets.all(15.0),
               child: GestureDetector(
                 onTap: () => _selectDateRange(context),
@@ -69,7 +70,10 @@ class _LesTextFieldScreenState extends State<LesTextFieldScreen> {
                       Text(_selectedDateRange != null
                           ? '${DateFormat('dd.MM.yyyy').format(_selectedDateRange!.start)} - ${DateFormat('dd.MM.yyyy').format(_selectedDateRange!.end)}'
                           : 'Выберите диапазон дат'),
-                      Icon(Icons.calendar_today, color: Colors.grey),
+                      Icon(
+                          key: ValueKey('calendarIcon'),
+                          Icons.calendar_today,
+                          color: Colors.grey),
                     ],
                   ),
                 ),
@@ -83,10 +87,12 @@ class _LesTextFieldScreenState extends State<LesTextFieldScreen> {
 
   TextField myTextField(TextEditingController controller) {
     return TextField(
+      key: ValueKey('myTextField'),
       cursorColor: Colors.green,
       controller: controller, //контроллер для этого TextField
       decoration: InputDecoration(
         icon: Icon(
+          key: ValueKey('accountBalanceWalletRoundedIcon'),
           Icons.account_balance_wallet_rounded,
           color: Colors.green,
           size: 40,
@@ -100,6 +106,7 @@ class _LesTextFieldScreenState extends State<LesTextFieldScreen> {
         floatingLabelBehavior: FloatingLabelBehavior
             .auto, //можно включить или отключить анимацию перемещения label
         prefixIcon: Icon(
+          key: ValueKey('monetizationOnOutlinedIcon'),
           Icons.monetization_on_outlined,
           color: Colors.green,
         ),
@@ -123,11 +130,13 @@ class _LesTextFieldScreenState extends State<LesTextFieldScreen> {
 
   TextField myBigTextField(TextEditingController controller) {
     return TextField(
+      key: ValueKey('myBigTextField'),
       maxLines: 5,
       cursorColor: Colors.green,
       controller: controller, //контроллер для этого TextField
       decoration: InputDecoration(
         icon: Icon(
+          key: ValueKey('contactPageRoundedIcon'),
           Icons.contact_page_rounded,
           color: Colors.green,
           size: 40,
@@ -154,11 +163,13 @@ class _LesTextFieldScreenState extends State<LesTextFieldScreen> {
 
   TextField myDisableTextField(String text) {
     return TextField(
+      key: ValueKey('myDisableTextField'),
       controller: TextEditingController(text: text),
       readOnly: true,
       cursorColor: Colors.green,
       decoration: InputDecoration(
         icon: Icon(
+          key: ValueKey('man'),
           Icons.man,
           color: Colors.green,
           size: 40,
@@ -183,6 +194,7 @@ class _LesTextFieldScreenState extends State<LesTextFieldScreen> {
 
   TextField mySearchTextField(String query) {
     return TextField(
+      key: ValueKey('mySearchTextField'),
       decoration: InputDecoration(
         hintText: 'Поиск...',
         hintStyle: TextStyle(color: Colors.grey.shade300),
@@ -190,6 +202,7 @@ class _LesTextFieldScreenState extends State<LesTextFieldScreen> {
         floatingLabelBehavior: FloatingLabelBehavior
             .auto, //можно включить или отключить анимацию перемещения label
         prefixIcon: Icon(
+          key: ValueKey('search'),
           Icons.search,
           color: Colors.green,
         ),
