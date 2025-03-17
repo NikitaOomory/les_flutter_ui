@@ -83,6 +83,7 @@ class ScreenTwo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: ValueKey('ScreenTwo'),
       // Структура экрана.
       backgroundColor: Colors.lightBlue, // Устанавливаем цвет фона.
       body: Center(
